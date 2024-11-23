@@ -15,17 +15,13 @@ victories = [[0,1,2],
  
 # Вывод карты на экран
 def print_maps():
-    print(maps[0], end = " ")
-    print(maps[1], end = " ")
-    print(maps[2])
- 
-    print(maps[3], end = " ")
-    print(maps[4], end = " ")
-    print(maps[5])
- 
-    print(maps[6], end = " ")
-    print(maps[7], end = " ")
-    print(maps[8])    
+    new_line = 1
+    for i in range(len(maps)): #проходимся по элементам карты
+        if new_line % 3: #после каждого третьего элемента - с новой строки
+            print(maps[i])
+            new_line += 1
+        else:
+            print(maps[i],end=" ")  
  
 # Сделать ход в ячейку
 def step_maps(step,symbol):
