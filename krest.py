@@ -26,14 +26,12 @@ def PrintBoard(): #функция вывода поля
 def Move(current_player): #функция хода текущего игрока
     print(f'Cейчах ходят - {current_player}')
     input_player = True #флаг для ввода координат
-    break_game = False #флаг для прекращения игры (try-except не позволяют закрыть терминал Ctrl^C) (exit() тоже не помогает)
     while input_player:
         try:
             PrintBoard()
             xy = input('Введите номер строки и столбца (для выхода введите 0): ')
             if xy == '0':
-                input_player = False
-                break_game = True
+                return 'BREAK'
             else:
                 x, y = map(int, xy.split())
                 x -= 1 # вводить/читать по координатам 0-2 неудобно
@@ -44,9 +42,7 @@ def Move(current_player): #функция хода текущего игрока
         except:
             print('\tНеверный ввод!')
     
-    print() #отступ, если ход верный
-    if break_game: return 'BREAK' #exit() не работает
-
+    print() #отступ, если ход верный (для удобства)
     board[x][y] = current_player
     if Check_Winner(): #победил данный игрок в этом ходе или нет
         return current_player
@@ -58,7 +54,7 @@ print('Игра крестики-нолики!!!')
 current_player = 'X'
 winner = False
 
-while '.' in [el for el_list in board for el in el_list] and not(winner): #пока существуют "пустые" ячейки и нет победителя / итерация ходов
+while '.' in [el for el_list in board for el in el_list] or not(winner): #пока существуют "пустые" ячейки и нет победителя / итерация ходов
     winner = Move(current_player)
     if winner == 'BREAK':
         break
@@ -68,4 +64,5 @@ while '.' in [el for el_list in board for el in el_list] and not(winner): #по�
         current_player = '0' if current_player == 'X' else 'X' #смена игроков
 
 if not(Check_Winner()):
+    PrintBoard()
     print('Ничья!')
