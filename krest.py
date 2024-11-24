@@ -54,11 +54,12 @@ print('Игра крестики-нолики!!!')
 current_player = 'X'
 winner = False
 
-while '.' in [el for el_list in board for el in el_list] or not(winner): #пока существуют "пустые" ячейки и нет победителя / итерация ходов
+while '.' in [el for el_list in board for el in el_list] and not(winner): #пока существуют "пустые" ячейки и нет победителя / итерация ходов
     winner = Move(current_player)
     if winner == 'BREAK':
         break
     elif winner:
+        PrintBoard()    
         print(f'Выигрывает {winner}!')
     else:
         current_player = '0' if current_player == 'X' else 'X' #смена игроков
