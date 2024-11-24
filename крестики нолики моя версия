@@ -1,0 +1,48 @@
+def check_winner(board):
+    # Проверка строк
+    for row in board:
+        if row[0] == row[1] == row[2] == "X" or row[0] == row[1] == row[2] == "0":
+            return True
+
+    # Проверка столбцов
+    for col in range(3):
+        if board[0][col] == board[1][col] == board[2][col] == "X" or board[0][col] == board[1][col] == board[2][col] == "0" :
+            return True
+
+    # Проверка диагоналей
+    if board[0][0] == board[1][1] == board[2][2] == "X" or board[0][0] == board[1][1] == board[2][2] == "0":
+        return True
+
+    if board[0][2] == board[1][1] == board[2][0] == "X" or board[0][2] == board[1][1] == board[2][0] == "0":
+        return True
+
+    return False
+print('Игра крестики-нолики!!!')
+maps = [['.','.','.'],['.','.','.'],['.','.','.']]
+i = 0
+current_player = 'X'
+for a in maps:
+    print('|'.join(a))
+
+for i in range(9):
+    print(f'Cейчах ходят - {current_player}')
+    x, y = map(int,input('введите координаты x(0-2),y(0,2) - ' ).split())
+    #проверяем правильность ввода
+    if x<3 and x>=0 and y<3 and y>=0 and maps[x][y] == '.' :
+        maps[x][y] = current_player
+        if maps[x][y] == 'X' or maps[x][y] == "0":
+            for a in maps:
+                print('|'.join(a))
+        #меняем ход
+        current_player = '0' if current_player == 'X' else 'X'
+    else:
+        print('Неверный ввод')
+    #проверяем условие победы
+    if check_winner(maps):
+        current_player = '0' if current_player == 'X' else 'X'
+        print(f'Выйграли! - {current_player}')
+        break
+
+if check_winner(maps) == False:
+    print('Ничья!')
+
