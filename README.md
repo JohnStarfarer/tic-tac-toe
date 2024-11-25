@@ -10,4 +10,4 @@
 
 3) *Основные элементы: Циклы для итерации ходов и проверки условий победы.*
 
-![КАКОЙ-ТО СТРАННЫЙ КВАДРАТ](https://github.com/user-attachments/assets/73c051c3-3e50-4814-9de4-898aa5a31f82)
+![У НЕГО ЧЕТЫРЕ УГЛА!!!](https://github.com/user-attachments/assets/26d1b996-beee-4186-92ee-e7f0b219729c)
